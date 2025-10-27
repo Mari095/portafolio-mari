@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logoicon-02.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+  <title>Otros Proyectos | Portafolio Mari</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffeef6;
+      color: #333;
+    }
+
+    /* --- ENCABEZADO --- */
+   header {
+      background-color: #ff94c2;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+    }
+
+    header .logo img {
+      width: 100px;
+    }
+
+    header h1 {
+      color: white;
+      font-size: 10px;
+      margin: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffd7eb;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #ffb6d9;
+      min-width: 180px;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+      border-radius: 8px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      color: white;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* --- SECCIÓN PRINCIPAL --- */
+    .title {
+      text-align: center;
+      margin-top: 60px;
+      color: #ff4d94;
+      font-size: 90px;
+      font-weight: 600;
+      font-family: "cookie";
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding: 60px 0;
+    }
+
+    .video-container {
+      position: relative;
+      width: 360px;
+      height: 380px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .video-container:hover {
+      transform: scale(1.05);
+    }
+
+    .video-container video,
+    .video-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 148, 194, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .video-container:hover .overlay {
+      opacity: 1;
+    }
+
+    .play-icon {
+      width: 80px;
+      height: 80px;
+      background-color: white;
+      mask: url('https://cdn-icons-png.flaticon.com/512/727/727245.png') center/contain no-repeat;
+      -webkit-mask: url('https://cdn-icons-png.flaticon.com/512/727/727245.png') center/contain no-repeat;
+    }
+
+    /* --- PIE DE PÁGINA --- */
+   footer {
+      background-color: #ff94c2;
+      padding: 25px;
+      color: white;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    footer nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      padding: 0;
+      margin-bottom: 15px;
+      list-style: none;
+    }
+
+    footer nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer nav a:hover {
+      color: #ffd7eb;
+    }
+
+    .contact-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 10px;
+    }
+
+    .contact-icons img {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .contact-icons img:hover {
+      transform: scale(1.15);
+    }
+
+    @media (max-width: 1000px) {
+      .video-container {
+        width: 80%;
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="logo">
+        <img src="img/Mari Logo.png" alt="">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#inicio">Inicio</a></li>
+        <li class="dropdown">
+          <a href="#">Trabajos</a>
+          <div class="dropdown-content">
+            <a href="maquillaje.html">Maquillaje</a>
+            <a href="ilustracion.html">Ilustración - Personajes</a>
+            <a href="fotografia.html">Fotografía</a>
+            <a href="otros.html">Otros proyectos</a>
+          </div>
+        </li>
+        <li><a href="index.html#sobre-mi">Sobre mí</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <h2 class="title">Otros proyectos</h2>
+
+  <section class="gallery">
+    <!-- VIDEO 1 -->
+    <div class="video-container" onclick="togglePlay(this)">
+      <video src="video/VID-20250812-WA0009.mp4" ></video>
+      <div class="overlay"><div class="play-icon"></div></div>
+    </div>
+
+    <!-- VIDEO 2 -->
+    <div class="video-container" onclick="togglePlay(this)">
+      <video src="video/YellowsBluw Johan's cut.mp4"></video>
+      <div class="overlay"><div class="play-icon"></div></div>
+    </div>
+
+    <!-- IMAGEN QUE REDIRIGE A INSTAGRAM -->
+    <div class="video-container" onclick="location.href='https://www.instagram.com/megafonetica?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=='">
+      <img src="img/allimite.jpg" alt="Instagram Proyecto">
+    </div>
+  </section>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <nav>
+      <ul>
+        <li><a href="">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="contact-icons">
+      <img src="img/email.png" alt="Correo" onclick="location.href='contacto.html'">
+      <img src="img/wpp.png" alt="WhatsApp" onclick="location.href='https://wa.me/573008705734'">
+      <img src="img/ig.png" alt="Instagram" onclick="location.href='https://www.instagram.com/maarii_makeup_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=='">
+    </div>
+  </footer>
+
+
+  <script>
+    // Reproduce o pausa solo el video clicado y pausa los demás
+    function togglePlay(container) {
+      const video = container.querySelector('video');
+      const overlay = container.querySelector('.overlay');
+      const allVideos = document.querySelectorAll('video');
+
+      allVideos.forEach(v => {
+        if (v !== video) {
+          v.pause();
+          v.closest('.video-container').querySelector('.overlay').style.opacity = 1;
+        }
+      });
+
+      if (video.paused) {
+        video.play();
+        overlay.style.opacity = 0;
+      } else {
+        video.pause();
+        overlay.style.opacity = 1;
+      }
+    }
+  </script>
+</body>
+</html>
