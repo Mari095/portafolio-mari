@@ -122,7 +122,7 @@
       transform: scale(1.05);
     }
 
-    .video-container video,
+    .video-container iframe,
     .video-container img {
       width: 100%;
       height: 100%;
@@ -170,7 +170,7 @@
       z-index: 100;
     }
 
-    .lightbox video, .lightbox img {
+    .lightbox iframe, .lightbox img {
       max-width: 80%;
       max-height: 80%;
       border-radius: 10px;
@@ -279,20 +279,20 @@
   <h2 class="title">Otros proyectos</h2>
 
   <section class="gallery">
-    <!-- VIDEO 1 -->
-    <div class="video-container" onclick="openLightbox('video/VID-20250812-WA0009.mp4', 'video')">
-      <video src="video/VID-20250812-WA0009.mp4"></video>
+    <!-- VIDEO 1 (YouTube) -->
+    <div class="video-container" onclick="openLightbox('https://youtu.be/yxKS55Wv6LI', 'youtube')">
+      <video src="https://youtu.be/yxKS55Wv6LI"></video>
       <div class="overlay"><div class="play-icon"></div></div>
     </div>
 
-    <!-- VIDEO 2 -->
-    <div class="video-container" onclick="openLightbox('video/YellowsBluw Johan\'s cut.mp4', 'video')">
-      <video src="video/YellowsBluw Johan's cut.mp4"></video>
+    <!-- VIDEO 2 (YouTube) -->
+    <div class="video-container" onclick="openLightbox('https://youtu.be/w8ZLra71etQ', 'youtube')">
+      <video src="https://youtu.be/w8ZLra71etQ"></video>
       <div class="overlay"><div class="play-icon"></div></div>
     </div>
 
     <!-- IMAGEN QUE REDIRIGE A INSTAGRAM -->
-    <div class="video-container" onclick="openLightbox('img/allimite.jpg', 'image')">
+    <div class="video-container" onclick="location.href='https://www.instagram.com/megafonetica?igsh=bjRpd2h5eWFjYTU3'">
       <img src="img/allimite.jpg" alt="Instagram Proyecto">
     </div>
   </section>
@@ -300,8 +300,8 @@
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <span class="close-btn" onclick="closeLightbox()">&times;</span>
-    <video id="lightbox-video" controls></video>
-    <img id="lightbox-img" src="" alt="Ampliado">
+    <iframe id="lightbox-yt" src="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen style="display:none"></iframe>
+    <img id="lightbox-img" src="" alt="Ampliado" style="display:none">
   </div>
 
   <!-- PIE DE PÁGINA -->
@@ -320,22 +320,53 @@
   </footer>
 
   <script>
-    // Lightbox funcional para videos e imágenes
+    // Lightbox funcional para YouTube e imágenes
+    function extractYouTubeID(input) {
+      // acepta ID, watch?v=, youtu.be/ y embed/
+      if (!input) return null;
+      // si ya es solo el ID (sin / ni ? )
+      if (/^[a-zA-Z0-9_-]{11}$/.test(input)) return input;
+
+      // buscar watch?v=ID
+      const m1 = input.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+      if (m1 && m1[1]) return m1[1];
+
+      // buscar youtu.be/ID
+      const m2 = input.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
+      if (m2 && m2[1]) return m2[1];
+
+      // buscar /embed/ID
+      const m3 = input.match(/\/embed\/([a-zA-Z0-9_-]{11})/);
+      if (m3 && m3[1]) return m3[1];
+
+      // último intento: buscar cualquier 11-char token
+      const m4 = input.match(/([a-zA-Z0-9_-]{11})/);
+      if (m4 && m4[1]) return m4[1];
+
+      return null;
+    }
+
     function openLightbox(src, type) {
       const lightbox = document.getElementById("lightbox");
-      const video = document.getElementById("lightbox-video");
+      const yt = document.getElementById("lightbox-yt");
       const img = document.getElementById("lightbox-img");
 
-      if (type === 'video') {
-        video.src = src;
-        video.style.display = 'block';
+      if (type === 'youtube') {
+        // extraer ID aunque pases watch?v=.., youtu.be/.., embed/.. o solo ID
+        const id = extractYouTubeID(src);
+        if (!id) {
+          // si no pudo extraer, intenta usar src tal cual (menos probable)
+          yt.src = src + "?autoplay=1";
+        } else {
+          yt.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0";
+        }
+        yt.style.display = 'block';
         img.style.display = 'none';
-        video.play();
       } else {
         img.src = src;
         img.style.display = 'block';
-        video.style.display = 'none';
-        video.pause();
+        yt.style.display = 'none';
+        yt.src = "";
       }
 
       lightbox.style.display = 'flex';
@@ -343,8 +374,8 @@
 
     function closeLightbox() {
       const lightbox = document.getElementById("lightbox");
-      const video = document.getElementById("lightbox-video");
-      video.pause();
+      const yt = document.getElementById("lightbox-yt");
+      yt.src = "";
       lightbox.style.display = "none";
     }
 
