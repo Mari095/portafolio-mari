@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logoicon-02.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+  <title>Otros Proyectos | Portafolio Mari</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffeef6;
+      color: #333;
+    }
+
+    /* --- ENCABEZADO --- */
+   header {
+      background-color: #ff94c2;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+    }
+
+    header .logo img {
+      width: 100px;
+    }
+
+    header h1 {
+      color: white;
+      font-size: 10px;
+      margin: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffd7eb;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #ffb6d9;
+      min-width: 180px;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+      border-radius: 8px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      color: white;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* --- SECCIÓN PRINCIPAL --- */
+    .title {
+      text-align: center;
+      margin-top: 60px;
+      color: #ff4d94;
+      font-size: 90px;
+      font-weight: 600;
+      font-family: "cookie";
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding: 60px 0;
+    }
+
+    .video-container {
+      position: relative;
+      width: 360px;
+      height: 380px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .video-container:hover {
+      transform: scale(1.05);
+    }
+
+    .video-container iframe,
+    .video-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 148, 194, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .video-container:hover .overlay {
+      opacity: 1;
+    }
+
+    .play-icon {
+      width: 80px;
+      height: 80px;
+      background-color: white;
+      mask: url('https://cdn-icons-png.flaticon.com/512/727/727245.png') center/contain no-repeat;
+      -webkit-mask: url('https://cdn-icons-png.flaticon.com/512/727/727245.png') center/contain no-repeat;
+    }
+
+    /* --- LIGHTBOX --- */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .lightbox iframe, .lightbox img {
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      animation: zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 40px;
+      right: 60px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .close-btn:hover {
+      color: #ff94c2;
+    }
+
+    /* --- PIE DE PÁGINA --- */
+   footer {
+      background-color: #ff94c2;
+      padding: 25px;
+      color: white;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    footer nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      padding: 0;
+      margin-bottom: 15px;
+      list-style: none;
+    }
+
+    footer nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer nav a:hover {
+      color: #ffd7eb;
+    }
+
+    .contact-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 10px;
+    }
+
+    .contact-icons img {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .contact-icons img:hover {
+      transform: scale(1.15);
+    }
+
+    @media (max-width: 768px) {
+      .video-container {
+        height: 260px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="logo">
+        <img src="img/Mari Logo.png" alt="">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#inicio">Inicio</a></li>
+        <li class="dropdown">
+          <a href="#">Trabajos</a>
+          <div class="dropdown-content">
+            <a href="maquillaje.html">Maquillaje</a>
+            <a href="ilustracion.html">Ilustración - Personajes</a>
+            <a href="fotografia.html">Fotografía</a>
+            <a href="otros.html">Otros proyectos</a>
+          </div>
+        </li>
+        <li><a href="index.html#sobre-mi">Sobre mí</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <h2 class="title">Otros proyectos</h2>
+
+  <section class="gallery">
+    <!-- VIDEO 1 (YouTube) -->
+    <div class="video-container" onclick="location.href='https://youtu.be/yxKS55Wv6LI?si=N-HHU-KjaGJHIbA-'">
+      <img src="img/elgritoimg.png" alt="">
+      <div class="overlay"><div class="play-icon"></div></div>
+    </div>
+
+    <!-- VIDEO 2 (YouTube) -->
+    <div class="video-container" onclick="location.href='https://youtu.be/w8ZLra71etQ?si=Fw0DtnEDou9FgwrJ'">
+      <img src="img/imgamariloazul.png" alt="">
+      <div class="overlay"><div class="play-icon"></div></div>
+    </div>
+
+    <!-- IMAGEN QUE REDIRIGE A INSTAGRAM -->
+    <div class="video-container" onclick="location.href='https://www.instagram.com/megafonetica?igsh=bjRpd2h5eWFjYTU3'">
+      <img src="img/allimite.jpg" alt="Instagram Proyecto">
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <iframe id="lightbox-yt" src="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen style="display:none"></iframe>
+    <img id="lightbox-img" src="" alt="Ampliado" style="display:none">
+  </div>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <nav>
+      <ul>
+        <li><a href="">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="contact-icons">
+      <img src="img/email.png" alt="" onclick="location.href='https://mail.google.com/mail/?view=cm&fs=1&to=maris09052017@gmail.com'">
+      <img src="img/wpp.png" alt="WhatsApp" onclick="location.href='https://wa.me/573008705734'">
+      <img src="img/ig.png" alt="Instagram" onclick="location.href='https://www.instagram.com/maarii_makeup_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=='">
+    </div>
+  </footer>
+
+  <script>
+    // Lightbox funcional para YouTube e imágenes
+    function extractYouTubeID(input) {
+      // acepta ID, watch?v=, youtu.be/ y embed/
+      if (!input) return null;
+      // si ya es solo el ID (sin / ni ? )
+      if (/^[a-zA-Z0-9_-]{11}$/.test(input)) return input;
+
+      // buscar watch?v=ID
+      const m1 = input.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+      if (m1 && m1[1]) return m1[1];
+
+      // buscar youtu.be/ID
+      const m2 = input.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
+      if (m2 && m2[1]) return m2[1];
+
+      // buscar /embed/ID
+      const m3 = input.match(/\/embed\/([a-zA-Z0-9_-]{11})/);
+      if (m3 && m3[1]) return m3[1];
+
+      // último intento: buscar cualquier 11-char token
+      const m4 = input.match(/([a-zA-Z0-9_-]{11})/);
+      if (m4 && m4[1]) return m4[1];
+
+      return null;
+    }
+
+    function openLightbox(src, type) {
+      const lightbox = document.getElementById("lightbox");
+      const yt = document.getElementById("lightbox-yt");
+      const img = document.getElementById("lightbox-img");
+
+      if (type === 'youtube') {
+        // extraer ID aunque pases watch?v=.., youtu.be/.., embed/.. o solo ID
+        const id = extractYouTubeID(src);
+        if (!id) {
+          // si no pudo extraer, intenta usar src tal cual (menos probable)
+          yt.src = src + "?autoplay=1";
+        } else {
+          yt.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0";
+        }
+        yt.style.display = 'block';
+        img.style.display = 'none';
+      } else {
+        img.src = src;
+        img.style.display = 'block';
+        yt.style.display = 'none';
+        yt.src = "";
+      }
+
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById("lightbox");
+      const yt = document.getElementById("lightbox-yt");
+      yt.src = "";
+      lightbox.style.display = "none";
+    }
+
+    document.getElementById("lightbox").addEventListener("click", function(e) {
+      if (e.target.id === "lightbox") closeLightbox();
+    });
+  </script>
+</body>
+</html>
+

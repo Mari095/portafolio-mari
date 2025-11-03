@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logoicon-02.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+  <title>Maquillaje | Portafolio Mari</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffeef6;
+      color: #333;
+    }
+
+    /* --- ENCABEZADO --- */
+     header {
+      background-color: #ff94c2;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+    }
+
+    header .logo img {
+      width: 100px;
+    }
+
+    header h1 {
+      color: white;
+      font-size: 10px;
+      margin: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffd7eb;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #ffb6d9;
+      min-width: 180px;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+      border-radius: 8px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      color: white;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* --- GALERÍA DE MAQUILLAJE --- */
+    .title {
+      text-align: center;
+      margin-top: 60px;
+      color: #ff4d94;
+      font-size: 90px;
+      font-weight: 600;
+      font-family: "cookie";
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 35px;
+      padding: 60px;
+      text-align: center;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      transition: transform 0.3s;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.07);
+    }
+
+    /* --- LIGHTBOX --- */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .lightbox img {
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      animation: zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 40px;
+      right: 60px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .close-btn:hover {
+      color: #ff94c2;
+    }
+
+    /* --- PIE DE PÁGINA --- */
+    footer {
+      background-color: #ff94c2;
+      padding: 25px;
+      color: white;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    footer nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      padding: 0;
+      margin-bottom: 15px;
+      list-style: none;
+    }
+
+    footer nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer nav a:hover {
+      color: #ffd7eb;
+    }
+
+    .contact-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 10px;
+    }
+
+    .contact-icons img {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .contact-icons img:hover {
+      transform: scale(1.15);
+    }
+
+    @media (max-width: 768px) {
+      .gallery-item img {
+        height: 260px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="logo">
+        <img src="img/Mari Logo.png" alt="">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#inicio">Inicio</a></li>
+        <li class="dropdown">
+          <a href="#">Trabajos</a>
+          <div class="dropdown-content">
+            <a href="maquillaje.html">Maquillaje</a>
+            <a href="ilustracion.html">Ilustración - Personajes</a>
+            <a href="fotografia.html">Fotografía</a>
+            <a href="otros.html">Otros proyectos</a>
+          </div>
+        </li>
+        <li><a href="index.html#sobre-mi">Sobre mí</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- TÍTULO -->
+  <h2 class="title">Maquillaje</h2>
+
+  <!-- GALERÍA DE IMÁGENES -->
+  <section class="gallery">
+    <div class="gallery-item"><img src="img/maquillaje.jpeg" alt="Maquillaje artístico" onclick="openLightbox(this.src)"></div>
+    <div class="gallery-item"><img src="img/sara.jpg" alt="Maquillaje profesional" onclick="openLightbox(this.src)"></div>
+    <div class="gallery-item"><img src="img/corazon.jpg" alt="Maquillaje creativo" onclick="openLightbox(this.src)"></div>
+    <div class="gallery-item"><img src="img/danna.jpg" alt="Maquillaje natural" onclick="openLightbox(this.src)"></div>
+    <div class="gallery-item"><img src="img/yo.jpg" alt="Maquillaje de fantasía" onclick="openLightbox(this.src)"></div>
+    <div class="gallery-item"><img src="img/sarabotero.jpg" alt="Maquillaje editorial" onclick="openLightbox(this.src)"></div>
+    <div class="gallery-item"><img src="img/ojocolor.jpg" alt="Maquillaje editorial" onclick="openLightbox(this.src)"></div>
+    <div class="gallery-item"><img src="img/juanita.jpg" alt="Maquillaje editorial" onclick="openLightbox(this.src)"></div>
+    <div class="gallery-item"><img src="img/ojoazul.jpg" alt="Maquillaje editorial" onclick="openLightbox(this.src)"></div>
+    <div class="gallery-item"><img src="img/ojodanna.jpg" alt="Maquillaje editorial" onclick="openLightbox(this.src)"></div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="Imagen ampliada">
+  </div>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <nav>
+      <ul>
+        <li><a href="">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="contact-icons">
+      <img src="img/email.png" alt="" onclick="location.href='https://mail.google.com/mail/?view=cm&fs=1&to=maris09052017@gmail.com'">
+      <img src="img/wpp.png" alt="WhatsApp" onclick="location.href='https://wa.me/573008705734'">
+      <img src="img/ig.png" alt="Instagram" onclick="location.href='https://www.instagram.com/maarii_makeup_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=='">
+    </div>
+  </footer>
+
+  <script>
+    // Lightbox funcional
+    function openLightbox(src) {
+      const lightbox = document.getElementById("lightbox");
+      const img = document.getElementById("lightbox-img");
+      img.src = src;
+      lightbox.style.display = "flex";
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+
+    // Cerrar al hacer clic fuera de la imagen
+    document.getElementById("lightbox").addEventListener("click", function(e) {
+      if (e.target.id === "lightbox") closeLightbox();
+    });
+  </script>
+</body>
+</html>
